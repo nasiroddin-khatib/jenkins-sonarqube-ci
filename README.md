@@ -19,7 +19,7 @@ It demonstrates a practical **CI pipeline workflow used in real DevOps environme
 
 ---
 
-## ⚙️ Tech Stack
+## ⚙️ Tech stack
 
 - Java 17  
 - Spring Boot  
