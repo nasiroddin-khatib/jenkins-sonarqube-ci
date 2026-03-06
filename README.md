@@ -16,6 +16,40 @@ This project demonstrates how **modern DevOps CI pipelines enforce code quality 
 
 ---
 
+## CI/CD Pipeline Architecture
+
+The following diagram represents the CI pipeline implemented in this project.
+
+```
+Code Push (Developer)
+   │
+   ▼
+GitHub Repository
+   │
+   ▼
+Webhook Trigger
+   │
+   ▼
+Jenkins Pipeline
+   │
+   ├── Checkout Code
+   ├── Build (Maven)
+   ├── Run Tests
+   ├── SonarQube Code Analysis
+   │
+   ▼
+Quality Gate Check
+   │
+   ├── ❌ Failed → Pipeline Stops
+   │
+   └── ✅ Passed → Continue Pipeline
+                        │
+                        ▼
+                 Package Artifact (JAR)
+```
+
+---
+
 ## ⚙️ Tech Stack
 
 * Java 17
@@ -115,34 +149,6 @@ mvn package
 ```
 
 Packages the application and generates the final **JAR artifact**.
-
----
-
-## 🔄 CI Pipeline Workflow
-
-```
-Developer Push Code → GitHub
-           ↓
-       GitHub Webhook
-           ↓
-         Jenkins
-           ↓
-        Checkout
-           ↓
-          Build
-           ↓
-           Test
-           ↓
-    SonarQube Analysis
-           ↓
-        Quality Gate
-           ↓
-          Package
-           ↓
-       Artifact (.jar)
-```
-
-Whenever code is pushed to the GitHub repository, the **GitHub Webhook automatically triggers the Jenkins pipeline**, enabling fully automated Continuous Integration.
 
 ---
 
